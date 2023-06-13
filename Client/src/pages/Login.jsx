@@ -7,7 +7,9 @@ function Login() {
     <div className="Login--page">
       <div className="login">
         <h1>Welcome Back</h1>
-        <a href="#" className="login--google">Login with Google</a>
+        <a href="#" className="login--google">
+          Login with Google
+        </a>
         <p>login with email</p>
         <form action="">
           <input type="email" name="" id="" placeholder="your email" />
@@ -25,8 +27,8 @@ function Login() {
           <input type="submit" value="Login" />
         </form>
         <div className="signup">
-            <span>dont you have an account yet</span>
-            <a href="#">signup</a>
+          <span>dont you have an account yet</span>
+          <a href="">Register</a>
         </div>
       </div>
       <div className="login--illustrator">
