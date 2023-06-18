@@ -1,35 +1,18 @@
-import dotenv from "dotenv";
-import assert from "assert";
+import dotenv from 'dotenv'
+dotenv.config()
 
-dotenv.config();
+const {SQL_DATABASE,SQL_SERVER,SQL_USER,SQL_PASSWORD} = process.env
+// console.log(SQL_ENCRYPTED)
 
-const {
-  HOST_URL,
-  HOST,
-  PORT,
-  SQL_SERVER,
-  SQL_PORT,
-  SQL_USER,
-  SQL_PASSWORD,
-  SQL_DB,
-} = process.env;
-
-const sqlEncrypt = (process.env.SQL_ENCRYPTED = true);
-
-const Configuration = {
-  port: PORT,
-  host: HOST,
-  url: HOST_URL,
-  sql: {
-    server: SQL_SERVER,
-    database: SQL_USER,
-    user: SQL_USER,
-    password: SQL_PASSWORD,
-  },
-  options: {
-    encrypt: sqlEncrypt,
-    onableArithAbort: true,
+const config = {
+  user:SQL_USER,
+  password:SQL_PASSWORD,
+  server: SQL_SERVER,
+  database: SQL_DATABASE,
+  options: { 
+    encrypt: true, 
+    trustServerCertificate: true
   },
 };
 
-export default Configuration;
+export default config

@@ -1,12 +1,11 @@
 import express from "express";
-import Configuration from "./model/Configuration.js";
+import UserRoute from "./routes/userRoute.js";
 
 const app = express();
+const PORT = 8081
 
-app.get("/", (req, res) => {
-  res.send(`welcome to my server`);
-});
+app.use('/user',UserRoute)
 
-app.listen(Configuration.port, () => {
+app.listen(PORT,() => {
   console.log(`i create my first server at 20`);
 });
