@@ -1,8 +1,27 @@
 import React from "react";
 import "./Login.css";
 import signin from "../assets/signin.svg";
+import * as yup from "yup";
+import {yupResolver} from '@hookform/resolvers/yup'
+import { useForm } from "react-hook-form";
 
 function Login() {
+  const schema = yup.object().shape({
+    email: yup.string().email().required(),
+    password: yup.string().min(5).max(15).required(),
+    confirmpassword: yup
+      .string()
+      .oneOf([yup.ref("password"), null])
+      .required(),
+  });
+  const { register, handleSubmit } = useForm({
+    resolver: yupResolver(schema)
+  });
+
+  const onsubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <div className="Login--page">
       <div className="login">
@@ -11,10 +30,28 @@ function Login() {
           Login with Google
         </a>
         <p>login with email</p>
-        <form action="">
-          <input type="email" name="" id="" placeholder="your email" />
-          <input type="password" name="" id="" placeholder="password" />
-          <input type="password" name="" id="" placeholder="confirmpassword" />
+        <form action="" onSubmit={handleSubmit(onsubmit)}>
+          <input
+            type="email"
+            name=""
+            id=""
+            placeholder="your email"
+            {...register("email")}
+          />
+          <input
+            type="password"
+            name=""
+            id=""
+            placeholder="password"
+            {...register("password")}
+          />
+          <input
+            type="password"
+            name=""
+            id=""
+            placeholder="confirmpassword"
+            {...register("confirmpassword")}
+          />
           <div className="checkbox-container">
             <div className="check-box">
               <input type="checkbox" id="remember" name="remember" />
