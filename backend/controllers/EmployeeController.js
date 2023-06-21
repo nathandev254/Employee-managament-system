@@ -46,7 +46,7 @@ export const GetEmployees = async (req, res) => {
     const employees = await pool.request().query("SELECT * FROM users");
     res.status(200).json({
       message: "employee accessed successfully",
-      data: employees.recordsets[0],
+      data: employees.recordset[0],
     });
   } catch (error) {
     res.status(404).json({ message: "employees not found" });

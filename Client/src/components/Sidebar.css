@@ -1,0 +1,21 @@
+.Sidebar {
+  width: 20rem;
+  height: calc(100vh - 5rem);
+  background-color: #18206f;
+  position: sticky;
+}
+.Sidebar--list {
+  width: 100%;
+  height: auto;
+}
+.Sidebar--list--element {
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px 2px;
+}
+.element--icon{
+    display: flex;
+    gap: 2px;
+}
