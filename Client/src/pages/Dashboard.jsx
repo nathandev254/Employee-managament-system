@@ -1,13 +1,15 @@
 import React from "react";
 import "./Dashboard.css";
-// import Navigation from "../components/Navigation";
 import SideNavigation from "../components/Sidebar";
+import {Outlet} from 'react-router-dom'
 
 function Dashboard() {
-  return <div className="Dashboard">
-    {/* <Navigation/> */}
-    <SideNavigation/>
-  </div>;
+  return (
+    <div className="Dashboard">
+      <SideNavigation />
+      <Outlet/>
+    </div>
+  );
 }
 
 export default Dashboard;

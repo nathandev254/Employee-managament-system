@@ -10,21 +10,30 @@ import { Link } from "react-router-dom";
 
 function SideNavigation() {
   return (
-    <div className="Sidebar--container">
-      <Sidebar className="Sidebar" backgroundColor="lightBlue">
+    <div className="Sidebar--container" style={{ minHeight: "100vh" }}>
+      <Sidebar backgroundColor="transparent" width="300px" height="100vh">
         <Menu>
-          <MenuItem icon={<AiFillDashboard />}>Dashboard</MenuItem>
+          <MenuItem component={<Link to="Home" />} icon={<AiFillDashboard />}>
+            Dashboard
+          </MenuItem>
           <SubMenu icon={<MdPeopleAlt />} label="employee">
-            <MenuItem component={<Link to="employee" />}>AddEmployee</MenuItem>
-            <MenuItem>ManageEmployee</MenuItem>
+            <MenuItem component={<Link to="AddEmployee" />}>
+              AddEmployee
+            </MenuItem>
+            <MenuItem component={<Link to="ManageEmployee" />}>
+              ManageEmployee
+            </MenuItem>
           </SubMenu>
           <SubMenu icon={<FcDepartment />} label="Department">
-            <MenuItem>AddDepartment</MenuItem>
-            <MenuItem>ManageDepartments</MenuItem>
+            <MenuItem component={<Link to="AddDepartment" />}>
+              AddDepartment
+            </MenuItem>
+            <MenuItem component={<Link to="ManageDepartment" />}>
+              ManageDepartments
+            </MenuItem>
           </SubMenu>
           <MenuItem icon={<MdPersonOff />}>Leave</MenuItem>
           <MenuItem icon={<TbNotes />}>Attendance</MenuItem>
-          <MenuItem icon={<AiFillDashboard />}>Collapse Sidebar</MenuItem>
         </Menu>
       </Sidebar>
     </div>
