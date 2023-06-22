@@ -2,7 +2,7 @@ import React from "react";
 import "./Login.css";
 import signin from "../assets/signin.svg";
 import * as yup from "yup";
-import {yupResolver} from '@hookform/resolvers/yup'
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
 function Login() {
@@ -15,7 +15,7 @@ function Login() {
       .required(),
   });
   const { register, handleSubmit } = useForm({
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
   });
 
   const onsubmit = (data) => {
