@@ -3,6 +3,7 @@ import "./AddEmployee.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import Axios from 'axios'
 
 function AddEmployee() {
   const schema = yup.object().shape({
@@ -13,12 +14,20 @@ function AddEmployee() {
     password: yup.string().min(5).max(15).required(),
   });
 
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit,reset } = useForm({
     resolver: yupResolver(schema),
   });
 
   const onSubmit = (data) => {
     console.log(data);
+    Axios.post('http://localhost:8081/employee', data)
+    .then(response => {
+      console.log('Data posted successfully:', response.data);
+      reset()
+    })
+    .catch(error => {
+      console.error('Error posting data:', error);
+    });
   };
 
   return (
