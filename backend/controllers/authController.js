@@ -13,7 +13,7 @@ export const Login = async (req, res) => {
       .input("username", sql.VarChar, username)
       .query("SELECT * FROM users WHERE username = @username");
     const user = results.recordset[0];
-    // console.log(user);
+    console.log(user);
     if (!user) {
       res.json({ error: "user doesnt exists" });
     } else {

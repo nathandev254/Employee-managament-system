@@ -3,39 +3,37 @@ import config from "../model/Configuration.js";
 import bcrypt from "bcrypt";
 
 export const CreateEmployee = async (req, res) => {
-  const { username, password, email } = req.body;
+  const { username, password, email, firstname, lastname } = req.body;
   const hashedpassword = bcrypt.hashSync(password, 10);
 
   try {
     let connection = await sql.connect(config);
     const results = await connection
       .request()
-      .input('username',sql.VarChar,username)
+      .input("username", sql.VarChar, username)
       .input("email", sql.VarChar, email)
       .query("SELECT * FROM users WHERE email= @email OR username= @username");
-      console.log(results.recordset[0])
     const user = results.recordset[0];
-    
-  if (user) {
+
+    if (user) {
       res.status(201).json({ message: "employee Already exists" });
-    } 
-    else {
+    } else {
       let pool = await sql.connect(config);
       await pool
         .request()
         .input("username", sql.VarChar, username)
         .input("hashedpassword", sql.VarChar, hashedpassword)
         .input("email", sql.VarChar, email)
+        .input("firstname", sql.VarChar, firstname)
+        .input("lastname", sql.VarChar, lastname)
         .query(
-          "INSERT INTO users (username,password,email) VALUES (@username,@hashedpassword,@email)"
+          "INSERT INTO users (username,password,email,firstname,lastname) VALUES (@username,@hashedpassword,@email,@firstname,@lastname)"
         );
-      res.status(200).json({ message: "employee created successfully" });
+      res.status(200).json({ message: "user created successfully" });
     }
-  } 
-  catch (error) {
+  } catch (error) {
     res.status(201).json({ message: "failed to add employee" });
-  } 
-  finally {
+  } finally {
     sql.close();
   }
 };
@@ -46,10 +44,10 @@ export const GetEmployees = async (req, res) => {
     const employees = await pool.request().query("SELECT * FROM users");
     res.status(200).json({
       message: "employee accessed successfully",
-      data: employees.recordset[0],
+      data: employees.recordset,
     });
   } catch (error) {
-    res.status(404).json({ message: "employees not found" });
+    res.status(404).json({ message: "server failure" });
   } finally {
     sql.close();
   }
