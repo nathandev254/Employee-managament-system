@@ -1,6 +1,6 @@
 import express from 'express'
 import { Login} from '../controllers/authController.js'
-import { Isloggedin } from '../middlewares/loginMiddleware.js'
+
 
 
 const AuthRoute = express.Router()

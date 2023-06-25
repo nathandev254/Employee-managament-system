@@ -8,6 +8,7 @@ function ManageEmployee() {
   useEffect(() => {
     Axios.get("http://localhost:8081/employee")
       .then((response) => {
+        // console.log(response)
         setemployees(response.data?.data);
       })
       .catch((error) => {
@@ -15,9 +16,6 @@ function ManageEmployee() {
       });
   }, []);
 
-  const handleDelete = (id) => {
-    
-  };
 
   return (
     <div className="table--container">

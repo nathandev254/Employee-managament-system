@@ -4,10 +4,14 @@ import signin from "../assets/signin.svg";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import {useNavigate} from 'react-router-dom'
+import Axios from 'axios'
 
 function Login() {
+  const navigate = useNavigate()
+
   const schema = yup.object().shape({
-    email: yup.string().email().required(),
+    username: yup.string().required(),
     password: yup.string().min(5).max(15).required(),
     confirmpassword: yup
       .string()
@@ -19,7 +23,14 @@ function Login() {
   });
 
   const onsubmit = (data) => {
-    console.log(data);
+    Axios.post('http://localhost:8081/login',data)
+    .then(response => {
+      console.log(response)
+      navigate('/Home')
+    })
+    .catch(({response}) => {
+      console.log(response)
+    })
   };
 
   return (
@@ -32,11 +43,11 @@ function Login() {
         <p>login with email</p>
         <form action="" onSubmit={handleSubmit(onsubmit)}>
           <input
-            type="email"
+            type="text"
             name=""
             id=""
-            placeholder="your email"
-            {...register("email")}
+            placeholder="username"
+            {...register("username")}
           />
           <input
             type="password"

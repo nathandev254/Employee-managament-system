@@ -13,15 +13,15 @@ export const Login = async (req, res) => {
       .input("username", sql.VarChar, username)
       .query("SELECT * FROM users WHERE username = @username");
     const user = results.recordset[0];
-    console.log(user);
+    // console.log(user);
     if (!user) {
-      res.json({ error: "user doesnt exists" });
+      res.json({ error: "username doesnt exists" });
     } else {
       if (!bcrypt.compareSync(password, user.password)) {
         res.json({ message: "wrong credentials" });
       }
       const token = JWT.sign(
-        { username: user.username, email: user.username },
+        { username: user.username, email: user.email },
         "LOGIN123",
         { expiresIn: "1h" }
       );
@@ -29,7 +29,7 @@ export const Login = async (req, res) => {
         username: user.username,
         email: user.email,
         user_id: user.user_id,
-        token,
+        token: `JWT ${token}`
       });
     }
   } catch (error) {
