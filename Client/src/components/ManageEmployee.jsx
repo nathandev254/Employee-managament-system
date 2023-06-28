@@ -17,6 +17,17 @@ function ManageEmployee() {
       });
   }, []);
 
+  const DeleteEmployee = (user_id) => {
+    console.log(user_id)
+    Axios.delete(`http://localhost:8081/employee/${user_id}`)
+    .then(response => {
+        console.log(response)
+    })
+    .catch(response => {
+      console.log(response)
+    })
+  }
+
 
   return (
     <div className="table--container">
@@ -39,12 +50,12 @@ function ManageEmployee() {
               <td>{employee.lastname}</td>
               <td>{employee.Department}</td>
               <td>
-                <Link to='UpdateEmployee'><button className="edit--btn">Edit</button></Link>
+                <Link to={`/Employeeform/${employee.user_id}`}><button className="edit--btn">Edit</button></Link>
               </td>
               <td>
                 <button
                   className="delete--btn"
-                  onClick={() => handleDelete(employee.user_id)}
+                  onClick={() => DeleteEmployee(employee.user_id)}
                 >
                   Delete
                 </button>

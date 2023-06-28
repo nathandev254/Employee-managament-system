@@ -10,7 +10,7 @@ import Axios from 'axios'
 
 function Login() {
   const navigate = useNavigate()
-  const {dispatch,user} = useContext(usercontext)
+  const {dispatch} = useContext(usercontext)
 
   const schema = yup.object().shape({
     username: yup.string().required(),

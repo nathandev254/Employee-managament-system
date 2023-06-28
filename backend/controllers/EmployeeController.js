@@ -78,6 +78,7 @@ export const UpdateEmployee = async (req, res) => {
 export const DeleteEmployee = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log(id)
     let pool = await sql.connect(config);
     await pool
       .request()
