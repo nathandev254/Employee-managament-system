@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Login.css";
 import signin from "../assets/signin.svg";
+import { usercontext } from "../context/Usercontext";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -9,6 +10,7 @@ import Axios from 'axios'
 
 function Login() {
   const navigate = useNavigate()
+  const {dispatch,user} = useContext(usercontext)
 
   const schema = yup.object().shape({
     username: yup.string().required(),
@@ -24,9 +26,12 @@ function Login() {
 
   const onsubmit = (data) => {
     Axios.post('http://localhost:8081/login',data)
-    .then(response => {
-      console.log(response)
-      navigate('/Home')
+    .then(({data}) => {
+      if(data.token){
+        dispatch({type:'LOGIN_SUCCESS', payload:data})
+        navigate('/Home')
+      }
+      
     })
     .catch(({response}) => {
       console.log(response)
@@ -80,7 +85,7 @@ function Login() {
         </div>
       </div>
       <div className="login--illustrator">
-        <img src={signin} alt="" srcset="" />
+        <img src={signin} alt="" srcSet="" />
       </div>
     </div>
   );

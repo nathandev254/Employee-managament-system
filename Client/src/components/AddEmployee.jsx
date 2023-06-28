@@ -4,8 +4,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import Axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 function AddEmployee() {
+  const navigate = useNavigate()
+
   const schema = yup.object().shape({
     username: yup.string().required(),
     firstname: yup.string().required(),
@@ -24,6 +27,7 @@ function AddEmployee() {
     .then(response => {
       console.log('Data posted successfully:', response.data);
       reset()
+      navigate('/ManageEmployee')
     })
     .catch(error => {
       console.error('Error posting data:', error);

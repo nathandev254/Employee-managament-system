@@ -7,6 +7,7 @@ import AddEmployee from "./components/AddEmployee";
 import ManageEmployee from "./components/ManageEmployee";
 import AddDepartment from "./components/AddDepartment";
 import ManageDepartment from "./components/ManageDepartment";
+import Employeeform from "./components/Employeeform";
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
             <Route path="AddEmployee" element={<AddEmployee />} />
             <Route path="ManageEmployee" element={<ManageEmployee />} />
             <Route path="AddDepartment" element={<AddDepartment />} />
-            <Route path="ManageDepartment" element={<ManageDepartment />} />
+            <Route path="ManageDepartment" element={<ManageDepartment />} >
+          </Route>
+            
           </Route>
           <Route path="/login" element={<Login />} />
         </Routes>

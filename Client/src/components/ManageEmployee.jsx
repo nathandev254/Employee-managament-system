@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./ManageEmployee.css";
 import Axios from "axios";
+import { Link } from "react-router-dom";
 
 function ManageEmployee() {
   const [employees, setemployees] = useState([]);
@@ -38,7 +39,7 @@ function ManageEmployee() {
               <td>{employee.lastname}</td>
               <td>{employee.Department}</td>
               <td>
-                <button className="edit--btn">Edit</button>
+                <Link to='UpdateEmployee'><button className="edit--btn">Edit</button></Link>
               </td>
               <td>
                 <button

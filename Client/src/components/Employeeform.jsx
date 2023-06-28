@@ -1,7 +1,7 @@
 import React from "react";
 
 function Employeeform() {
-  return <div>Add employee</div>;
+  return <div>Coming soon</div>;
 }
 
 export default Employeeform;

@@ -6,7 +6,7 @@ import JWT from "jsonwebtoken";
 export const Login = async (req, res) => {
   try {
     const { username, password } = req.body;
-    // console.log(username);
+    console.log(password);
     let connection = await sql.connect(config);
     const results = await connection
       .request()
