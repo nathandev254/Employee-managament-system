@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function ManageEmployee() {
   const [employees, setemployees] = useState([]);
 
-  useEffect(() => {
+  const Fetchemployees = () => {
     Axios.get("http://localhost:8081/employee")
       .then((response) => {
         // console.log(response)
@@ -15,19 +15,24 @@ function ManageEmployee() {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  useEffect(() => {
+    Fetchemployees()
   }, []);
 
   const DeleteEmployee = (user_id) => {
-    console.log(user_id)
+    console.log(user_id);
     Axios.delete(`http://localhost:8081/employee/${user_id}`)
-    .then(response => {
-        console.log(response)
-    })
-    .catch(response => {
-      console.log(response)
-    })
-  }
-
+      .then((response) => {
+        console.log(response);
+        Fetchemployees()
+      })
+      .catch((response) => {
+        console.log(response);
+      });
+      
+  };
 
   return (
     <div className="table--container">
@@ -50,7 +55,9 @@ function ManageEmployee() {
               <td>{employee.lastname}</td>
               <td>{employee.Department}</td>
               <td>
-                <Link to={`/Employeeform/${employee.user_id}`}><button className="edit--btn">Edit</button></Link>
+                <Link to={`/Employeeform/${employee.user_id}`}>
+                  <button className="edit--btn">Edit</button>
+                </Link>
               </td>
               <td>
                 <button

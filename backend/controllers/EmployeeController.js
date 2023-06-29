@@ -53,11 +53,29 @@ export const GetEmployees = async (req, res) => {
   }
 };
 
+export const GetEmployee = async (req, res) => {
+  try {
+    const {id} = req.params
+    let pool = await sql.connect(config);
+    const employee = await pool.request()
+    .input('id', sql.Int, id)
+    .query("SELECT * FROM users WHERE user_id = @id");
+    res.status(200).json({
+      message: "employee accessed successfully",
+      data: employee.recordset,
+    });
+  } catch (error) {
+    res.status(404).json({message:'failed to access employee'})
+  }
+  finally{
+    sql.close()
+  }
+};
+
 export const UpdateEmployee = async (req, res) => {
   try {
     const { id } = req.params;
     const { username, email } = req.body;
-    console.log(id);
     let pool = await sql.connect(config);
     await pool
       .request()
@@ -78,7 +96,6 @@ export const UpdateEmployee = async (req, res) => {
 export const DeleteEmployee = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id)
     let pool = await sql.connect(config);
     await pool
       .request()
