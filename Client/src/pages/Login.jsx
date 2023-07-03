@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import {useNavigate} from 'react-router-dom'
 import Axios from 'axios'
+import { ApiDomain } from "../utils/Domain";
 
 function Login() {
   const navigate = useNavigate()
@@ -25,7 +26,7 @@ function Login() {
   });
 
   const onsubmit = (data) => {
-    Axios.post('http://localhost:8081/login',data)
+    Axios.post(`${ApiDomain}/login`,data)
     .then(({data}) => {
       if(data.token){
         dispatch({type:'LOGIN_SUCCESS', payload:data})

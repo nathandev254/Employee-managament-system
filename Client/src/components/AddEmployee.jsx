@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import Axios from 'axios'
 import {useNavigate} from 'react-router-dom'
+import { ApiDomain } from "../utils/Domain";
 
 function AddEmployee() {
   const navigate = useNavigate()
@@ -23,7 +24,7 @@ function AddEmployee() {
 
   const onSubmit = (data) => {
     console.log(data);
-    Axios.post('http://localhost:8081/employee', data)
+    Axios.post(`${ApiDomain}/employee`, data)
     .then(response => {
       console.log('Data posted successfully:', response.data);
       reset()

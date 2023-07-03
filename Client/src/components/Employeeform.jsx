@@ -7,12 +7,12 @@ import Axios from "axios";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { ApiDomain } from "../utils/Domain";
 
 function Employeeform() {
-  const { user } = useContext(usercontext);
   const [data, setdata] = useState([]);
   const { id } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const schema = yup.object().shape({
     username: yup.string().required(),
@@ -25,18 +25,8 @@ function Employeeform() {
     resolver: yupResolver(schema),
   });
 
-  const UpdateSubmit = (data) => {
-    Axios.put(`http://localhost:8081/employee/${id}`,data)
-    .then(response => {
-       navigate('/ManageEmployee')
-    })
-    .catch(response => {
-      console.log(response)
-    })
-  }
-
-  useEffect(() => {
-    Axios.get(`http://localhost:8081/employee/${id}`)
+  const GetEmployee = () => {
+    Axios.get(`${ApiDomain}/employee/${id}`)
       .then(({ data }) => {
         console.log(data);
         setdata(data.data[0]);
@@ -44,6 +34,22 @@ function Employeeform() {
       .catch((response) => {
         console.log(response);
       });
+  };
+
+  const UpdateSubmit = (data) => {
+    console.log(data);
+    Axios.put(`${ApiDomain}/employee/${id}`, data)
+      .then((response) => {
+        GetEmployee()
+        navigate("/ManageEmployee");
+      })
+      .catch((response) => {
+        console.log(response);
+      });
+  };
+
+  useEffect(() => {
+    GetEmployee()
   }, []);
 
   return (
