@@ -75,15 +75,17 @@ export const GetEmployee = async (req, res) => {
 export const UpdateEmployee = async (req, res) => {
   try {
     const { id } = req.params;
-    const { username, email } = req.body;
+    const { username, email,lastname,firstname } = req.body;
     let pool = await sql.connect(config);
     await pool
       .request()
       .input("id", sql.Int, id)
+      .input("lastname", sql.Int, lastname)
+      .input("firstname", sql.Int, firstname)
       .input("username", sql.VarChar, username)
       .input("email", sql.VarChar, email)
       .query(
-        "UPDATE users SET username=@username,email=@email WHERE user_id = @id"
+        "UPDATE users SET username=@username,email=@email,lastname=@lastname,firstname=@firstname,email=@email WHERE user_id = @id"
       );
     res.status(200).json({ message: "employee updated successffully" });
   } catch (error) {

@@ -10,9 +10,11 @@ import { useForm } from "react-hook-form";
 import { ApiDomain } from "../utils/Domain";
 
 function Employeeform() {
-  const [data, setdata] = useState([]);
+  const [data, setdata] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
+
+  console.log(data)
 
   const schema = yup.object().shape({
     username: yup.string().required(),
@@ -25,10 +27,10 @@ function Employeeform() {
     resolver: yupResolver(schema),
   });
 
-  const GetEmployee = () => {
-    Axios.get(`${ApiDomain}/employee/${id}`)
+  const GetEmployee = async () => {
+     await Axios.get(`${ApiDomain}/employee/${id}`)
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         setdata(data.data[0]);
       })
       .catch((response) => {
@@ -40,7 +42,7 @@ function Employeeform() {
     console.log(data);
     Axios.put(`${ApiDomain}/employee/${id}`, data)
       .then((response) => {
-        GetEmployee()
+        // GetEmployee()
         navigate("/ManageEmployee");
       })
       .catch((response) => {

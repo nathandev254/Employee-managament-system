@@ -7,6 +7,8 @@ import { ApiDomain } from "../utils/Domain";
 function ManageEmployee() {
   const [employees, setemployees] = useState([]);
 
+  // console.log(employees)
+
   const Fetchemployees = () => {
     Axios.get(`${ApiDomain}/employee`)
       .then((response) => {
