@@ -17,9 +17,9 @@ function Employeeform() {
   console.log(data)
 
   const schema = yup.object().shape({
-    username: yup.string().required(),
-    firstname: yup.string().required(),
-    lastname: yup.string().required(),
+    userName: yup.string().required(),
+    firstName: yup.string().required(),
+    lastName: yup.string().required(),
     email: yup.string().email().required(),
   });
 
@@ -61,20 +61,20 @@ function Employeeform() {
         <input
           type="text"
           placeholder="username"
-          defaultValue={data.username}
-          {...register("username")}
+          defaultValue={data.userName}
+          {...register("userName")}
         />
         <input
           type="text"
           placeholder="firstname"
-          defaultValue={data.firstname}
-          {...register("firstname")}
+          defaultValue={data.firstName}
+          {...register("firstName")}
         />
         <input
           type="text"
           placeholder="lastname"
-          defaultValue={data.lastname}
-          {...register("lastname")}
+          defaultValue={data.lastName}
+          {...register("lastName")}
         />
         <input
           type="text"

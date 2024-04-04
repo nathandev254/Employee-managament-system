@@ -11,9 +11,9 @@ function AddEmployee() {
   const navigate = useNavigate()
 
   const schema = yup.object().shape({
-    username: yup.string().required(),
-    firstname: yup.string().required(),
-    lastname: yup.string().required(),
+    userName: yup.string().required(),
+    firstName: yup.string().required(),
+    lastName: yup.string().required(),
     email: yup.string().email().required(),
     password: yup.string().min(5).max(15).required(),
   });
@@ -38,9 +38,9 @@ function AddEmployee() {
   return (
     <div className="Add--Employee">
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" placeholder="username" {...register("username")} />
-        <input type="text" placeholder="firstname" {...register("firstname")} />
-        <input type="text" placeholder="lastname" {...register("lastname")} />
+        <input type="text" placeholder="username" {...register("userName")} />
+        <input type="text" placeholder="firstname" {...register("firstName")} />
+        <input type="text" placeholder="lastname" {...register("lastName")} />
         <input type="email" placeholder="email" {...register("email")} />
         <input
           type="password"

@@ -14,7 +14,7 @@ function Login() {
   const {dispatch} = useContext(usercontext)
 
   const schema = yup.object().shape({
-    username: yup.string().required(),
+    userName: yup.string().required(),
     password: yup.string().min(5).max(15).required(),
     confirmpassword: yup
       .string()
@@ -26,6 +26,7 @@ function Login() {
   });
 
   const onsubmit = (data) => {
+    console.log(data);
     Axios.post(`${ApiDomain}/login`,data)
     .then(({data}) => {
       if(data.token){
@@ -53,7 +54,7 @@ function Login() {
             name=""
             id=""
             placeholder="username"
-            {...register("username")}
+            {...register("userName")}
           />
           <input
             type="password"
