@@ -15,29 +15,32 @@ function Login() {
 
   const schema = yup.object().shape({
     username: yup.string().required(),
-    password: yup.string().min(5).max(15).required(),
-    confirmpassword: yup
-      .string()
-      .oneOf([yup.ref("password"), null])
-      .required(),
-  });
-  const { register, handleSubmit } = useForm({
-    resolver: yupResolver(schema),
-  });
+    password: yup.string().min(5).max(15).required()
+});
+
+const { register, handleSubmit } = useForm({
+    resolver: yupResolver(schema)
+});
+
 
   const onsubmit = (data) => {
+    console.log('logged')
+    navigate('/Home')
     Axios.post(`${ApiDomain}/login`,data)
     .then(({data}) => {
       if(data.token){
         dispatch({type:'LOGIN_SUCCESS', payload:data})
-        navigate('/Home')
+        // navigate('/Home')
       }
       
     })
     .catch(({response}) => {
       console.log(response)
     })
-  };
+    
+};
+ 
+  
 
   return (
     <div className="Login--page">
@@ -61,13 +64,6 @@ function Login() {
             id=""
             placeholder="password"
             {...register("password")}
-          />
-          <input
-            type="password"
-            name=""
-            id=""
-            placeholder="confirmpassword"
-            {...register("confirmpassword")}
           />
           <div className="checkbox-container">
             <div className="check-box">

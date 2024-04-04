@@ -17,5 +17,5 @@ app.use("/", AuthRoute);
 
 
 app.listen(PORT, () => {
-  console.log(`i create my first server at 20`);
+  console.log('sever running');
 });

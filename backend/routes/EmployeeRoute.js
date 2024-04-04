@@ -1,5 +1,5 @@
 import express from "express";
-import {Isloggedin} from '../middlewares/loginMiddleware.js'
+// import {Isloggedin} from '../middlewares/loginMiddleware.js'
 import {
   CreateEmployee,
   GetEmployees,

@@ -14,18 +14,19 @@ import Employeeform from "./components/Employeeform";
 function App() {
 
   const {user} = useContext(usercontext)
+  // console.log(user);
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/" element={ user ? <Dashboard /> : <Navigate to="/login" replace/>}>
+          <Route path="/" element={user ? <Dashboard /> : <Navigate to="/login" replace />}>
             <Route path="Home" element={<Home />} />
             <Route path="AddEmployee" element={<AddEmployee />} />
             <Route path="ManageEmployee" element={<ManageEmployee />} />
             <Route path="Employeeform/:id" element={<Employeeform />} />
             <Route path="AddDepartment" element={<AddDepartment />} />
             <Route path="ManageDepartment" element={<ManageDepartment />} />
-          </Route> 
+          </Route>
           <Route path="login" element={<Login />} />
         </Routes>
       </Router>

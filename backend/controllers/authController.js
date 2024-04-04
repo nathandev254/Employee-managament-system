@@ -4,13 +4,18 @@ import bcrypt from "bcrypt";
 import JWT from "jsonwebtoken";
 
 export const Login = async (req, res) => {
+
   try {
     const { username, password } = req.body;
+    // console.log(req.body);
     let connection = await sql.connect(config);
+    console.log(connection);
     const results = await connection
       .request()
       .input("username", sql.VarChar, username)
       .query("SELECT * FROM users WHERE username = @username");
+
+      // console.log(results);
     const user = results.recordset[0];
     // console.log(user);
     if (!user) {
@@ -32,6 +37,7 @@ export const Login = async (req, res) => {
       });
     }
   } catch (error) {
+    console.log(error);
     res.json(error);
   }
 };
