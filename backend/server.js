@@ -17,5 +17,5 @@ app.use("/", AuthRoute);
 
 
 app.listen(PORT, () => {
-  console.log('sever running');
+  console.log(`Server up and running..`);
 });

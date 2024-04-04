@@ -14,23 +14,24 @@ function Login() {
   const {dispatch} = useContext(usercontext)
 
   const schema = yup.object().shape({
-    username: yup.string().required(),
-    password: yup.string().min(5).max(15).required()
-});
-
-const { register, handleSubmit } = useForm({
-    resolver: yupResolver(schema)
-});
-
+    userName: yup.string().required(),
+    password: yup.string().min(5).max(15).required(),
+    // confirmpassword: yup
+    //   .string()
+    //   .oneOf([yup.ref("password"), null])
+    //   .required(),
+  });
+  const { register, handleSubmit } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const onsubmit = (data) => {
-    console.log('logged')
-    navigate('/Home')
+    console.log(data);
     Axios.post(`${ApiDomain}/login`,data)
     .then(({data}) => {
       if(data.token){
         dispatch({type:'LOGIN_SUCCESS', payload:data})
-        // navigate('/Home')
+        navigate('/Home')
       }
       
     })
@@ -54,14 +55,12 @@ const { register, handleSubmit } = useForm({
           <input
             type="text"
             name=""
-            id=""
             placeholder="username"
-            {...register("username")}
+            {...register("userName")}
           />
           <input
             type="password"
             name=""
-            id=""
             placeholder="password"
             {...register("password")}
           />

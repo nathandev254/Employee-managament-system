@@ -51,20 +51,20 @@ function ManageEmployee() {
         </thead>
         <tbody>
           {employees.map((employee) => (
-            <tr key={employee.user_id}>
-              <td>{employee.username}</td>
-              <td>{employee.firstname}</td>
-              <td>{employee.lastname}</td>
+            <tr key={employee.id}>
+              <td>{employee.userName}</td>
+              <td>{employee.firstName}</td>
+              <td>{employee.lastName}</td>
               <td>{employee.Department}</td>
               <td>
-                <Link to={`/Employeeform/${employee.user_id}`}>
+                <Link to={`/Employeeform/${employee.id}`}>
                   <button className="edit--btn">Edit</button>
                 </Link>
               </td>
               <td>
                 <button
                   className="delete--btn"
-                  onClick={() => DeleteEmployee(employee.user_id)}
+                  onClick={() => DeleteEmployee(employee.id)}
                 >
                   Delete
                 </button>

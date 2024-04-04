@@ -1,43 +1,45 @@
-import sql from "mssql";
-import config from "../model/Configuration.js";
 import bcrypt from "bcrypt";
 import JWT from "jsonwebtoken";
+import { connection } from "../config/config.js";
+
 
 export const Login = async (req, res) => {
 
   try {
-    const { username, password } = req.body;
-    // console.log(req.body);
-    let connection = await sql.connect(config);
-    console.log(connection);
-    const results = await connection
-      .request()
-      .input("username", sql.VarChar, username)
-      .query("SELECT * FROM users WHERE username = @username");
+    const { userName, password } = req.body;
 
-      // console.log(results);
-    const user = results.recordset[0];
-    // console.log(user);
-    if (!user) {
-      res.json({ error: "username doesnt exists" });
-    } else {
-      if (!bcrypt.compareSync(password, user.password)) {
-        res.json({ message: "wrong credentials" });
+    connection.query(
+      "SELECT * FROM users WHERE userName = ?",
+      [userName],
+      async (error, results) => {
+        if (error) {
+          return res.status(500).json({ error: "Error executing query", error });
+        }
+
+        const user = results[0];
+        if (!user) {
+          return res.json({ error: "Username doesn't exist" });
+        }
+
+        if (!bcrypt.compareSync(password, user.password)) {
+          return res.json({ message: "Wrong credentials" });
+        }
+
+        const token = JWT.sign(
+          { userName: user.userName, email: user.email },
+          "LOGIN123",
+          { expiresIn: "1h" }
+        );
+
+        return res.json({
+          username: user.userName,
+          email: user.email,
+          user_id: user.id,
+          token: `JWT ${token}`
+        });
       }
-      const token = JWT.sign(
-        { username: user.username, email: user.email },
-        "LOGIN123",
-        { expiresIn: "1h" }
-      );
-      res.json({
-        username: user.username,
-        email: user.email,
-        user_id: user.user_id,
-        token: `JWT ${token}`
-      });
-    }
+    );
   } catch (error) {
-    console.log(error);
-    res.json(error);
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
