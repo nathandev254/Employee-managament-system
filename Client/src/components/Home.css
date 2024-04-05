@@ -1,20 +1,205 @@
-.Home--container{
+.dashboard {
     display: flex;
-    width: calc(100vw - 300px);
-}
-.Home--container div {
-    height: 200px;
-    width: 33%;
-    margin:  10px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .tab {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .tab:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .tab.active {
+    background-color: #70367c;
     color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column; /* Added to stack search bar on top of containers */
+    align-items: center; /* Added for centering */
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .employee,
+  .department,
+  .salary {
+    margin: 10px;
+    padding: 20px;
     border-radius: 10px;
-}
-.container--1{
-    background-color: #70367C;
-}
-.container--2{
-    background-color: #95CFD5;
-}
-.container--3{
-    background-color: #FD7E50;
-}
+    background-color: #f0f0f0;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .employee:hover,
+  .department:hover,
+  .salary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .employee h2,
+  .department h2,
+  .salary h2 {
+    margin-bottom: 10px;
+  }
+  
+  .employee p,
+  .department p,
+  .salary p {
+    margin: 5px 0;
+  }
+  
+  .employee-details {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+  }
+  
+  .employee-details h2 {
+    margin-bottom: 10px;
+  }
+  
+  .employee-details p {
+    margin: 5px 0;
+  }
+  
+  .employee-details button {
+    padding: 8px 16px;
+    background-color: #70367c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .employee-details button:hover {
+    background-color: #5a2e63;
+  }
+  
+  .search-bar {
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 300px; /* Added for responsiveness */
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .search-bar input:focus {
+    outline: none;
+    border-color: #70367c; /* Added focus style */
+  }
+  
+  .form {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+  }
+  
+  .form h2 {
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-color: #70367c; /* Added focus style */
+  }
+  
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .form-actions button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-actions button:first-child {
+    background-color: #70367c;
+    color: #fff;
+  }
+  
+  .form-actions button:first-child:hover {
+    background-color: #5a2e63;
+  }
+  
+  .form-actions button:last-child {
+    background-color: #ccc;
+  }
+  
+  .form-actions button:last-child:hover {
+    background-color: #b5b5b5;
+  }
+  

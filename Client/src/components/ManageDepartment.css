@@ -1,0 +1,118 @@
+.table--container {
+    width: calc(100vw - 300px);
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .table {
+    width: 80%;
+    border-collapse: collapse;
+    font-family: 'Roboto', sans-serif; /* Changed font to Roboto for modern look */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9; /* Slightly lighter background color */
+  }
+  
+  .table th,
+  .table td {
+    padding: 15px; /* Increased padding for better spacing */
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Lighter border color */
+  }
+  
+  .table th {
+    background-color: #3949ab; /* Dark blue background for header */
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .table tbody tr:nth-child(even) {
+    background-color: #fff; /* White background for even rows */
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f0f0f0; /* Light grey background on hover */
+  }
+  
+  .table tbody td:first-child {
+    font-weight: bold;
+    color: #333; /* Darker text color */
+  }
+  
+  .table tfoot {
+    font-style: italic;
+  }
+  
+  .table tfoot td {
+    padding: 10px;
+    text-align: center;
+    color: #888;
+  }
+  
+  .edit--btn,
+  .delete--btn {
+    padding: 8px 15px; /* Slightly smaller padding */
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px; /* Rounder button shape */
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+  }
+  
+  .edit--btn {
+    background-color: #4caf50; /* Green edit button */
+    color: #fff;
+  }
+  
+  .delete--btn {
+    background-color: #f44336; /* Red delete button */
+    color: #fff;
+  }
+  
+  .edit--btn:hover,
+  .delete--btn:hover {
+    background-color: #333; /* Darker background on hover */
+  }
+
+
+.table--container {
+    width: calc(100vw - 300px);
+    display: flex;
+    flex-direction: column; /* To stack search bar on top */
+    align-items: center;
+    margin-top: 20px; /* Added margin for spacing */
+  }
+  
+  .department-header {
+    font-size: 24px;
+    margin-bottom: 20px; /* Added margin for spacing */
+    color: #333;
+  }
+  
+  .search-container {
+    margin-bottom: 20px; /* Added margin for spacing */
+  }
+  
+  .search-container input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .search-container input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px #007bff;
+  }
+  
+  .loading {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
